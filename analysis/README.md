@@ -1,3 +1,3 @@
-block shares and latencies
+Block shares and latencies
 ---
-test
+![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/histogram.png)
