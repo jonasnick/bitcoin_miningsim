@@ -48,7 +48,7 @@ run_simulation(boost::random::mt19937& rng, int n_blocks,
     for (auto miner : miners) probabilities.push_back(miner->GetHashFraction());
     boost::random::discrete_distribution<> dist(probabilities.begin(), probabilities.end());
 
-    boost::random::variate_generator<boost::random::mt19937, boost::random::exponential_distribution<>>
+    boost::random::variate_generator<boost::random::mt19937&, boost::random::exponential_distribution<>>
         block_time_gen(rng, boost::random::exponential_distribution<>(1.0));
 
     std::map<int, int> block_owners; // Map block number to miner who found that block
@@ -180,6 +180,9 @@ int main(int argc, char** argv)
     std::vector<int> blocks_found_sum;
     blocks_found_sum.assign(miners.size(), 0);
     for (int run = 0; run < n_runs; run++) {
+#ifdef TRACE
+        std::cout << "Run " << run << "\n";
+#endif
         for (auto miner : miners) miner->ResetChain();
 
         std::vector<int> blocks_found;
