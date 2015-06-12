@@ -15,7 +15,7 @@ Small miners create small blocks
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/realistic_hashrates_small.png)
 
 
-Well vs. badly connected miners
+Well vs. poorly connected miners
 ---
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/badly_connected_big_blocks.png.png)
 
