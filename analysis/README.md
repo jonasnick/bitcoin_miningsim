@@ -25,7 +25,8 @@ Small miners create small blocks
 
 Well vs. poorly connected miners
 ---
-![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/badly_connected_big_blocks.png.png)
+![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/badly_connected_big_blocks.png)
+![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/badly_connected_small_blocks.png)
 
 
 [more plots](https://github.com/jonasnick/bitcoin_miningsim/master/analysis/more_graphs.md)
