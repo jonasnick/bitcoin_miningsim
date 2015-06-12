@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#include "standard_miner.hpp"
+#include "smart_miner.hpp"
 
 
 static void
@@ -40,7 +40,7 @@ random_real(boost::random::mt19937& rng, double min, double max)
 
 int
 run_simulation(boost::random::mt19937& rng, int n_blocks,
-               std::vector<Miner*>& miners, std::vector<int>& blocks_found)
+               std::vector<Miner*>& miners, std::vector<int>& blocks_found, std::vector<int>& blocks_found_with_orphans)
 {
     CScheduler simulator;
 
@@ -56,9 +56,12 @@ run_simulation(boost::random::mt19937& rng, int n_blocks,
     // This loops primes the simulation with n_blocks being found at random intervals
     // starting from t=0:
     double t = 0.0;
+    blocks_found_with_orphans.clear();
+    blocks_found_with_orphans.insert(blocks_found_with_orphans.begin(), miners.size(), 0);
     for (int i = 0; i < n_blocks; i++) {
         int which_miner = dist(rng);
         block_owners.insert(std::make_pair(i, which_miner));
+        ++blocks_found_with_orphans[which_miner];
         auto t_delta = block_time_gen()*600.0;
         auto t_found = t + t_delta;
         auto f = boost::bind(&Miner::FindBlock, miners[which_miner], boost::ref(simulator), i);
@@ -178,7 +181,9 @@ int main(int argc, char** argv)
     int best_chain_sum = 0;
     double fraction_orphan_sum = 0.0;
     std::vector<int> blocks_found_sum;
+    std::vector<int> blocks_found_with_orphans_sum;
     blocks_found_sum.assign(miners.size(), 0);
+    blocks_found_with_orphans_sum.assign(miners.size(), 0);
     for (int run = 0; run < n_runs; run++) {
 #ifdef TRACE
         std::cout << "Run " << run << "\n";
@@ -186,19 +191,35 @@ int main(int argc, char** argv)
         for (auto miner : miners) miner->ResetChain();
 
         std::vector<int> blocks_found;
-        int best_chain_length = run_simulation(rng, n_blocks, miners, blocks_found);
+        std::vector<int> blocks_found_with_orphans;
+        int best_chain_length = run_simulation(rng, n_blocks, miners, blocks_found, blocks_found_with_orphans);
         best_chain_sum += best_chain_length;
         fraction_orphan_sum += 1.0 - (double)best_chain_length/(double)n_blocks;;
-        for (int i = 0; i < blocks_found.size(); i++) blocks_found_sum[i] += blocks_found[i];
+        for (int i = 0; i < blocks_found.size(); i++) {
+            blocks_found_sum[i] += blocks_found[i];
+            blocks_found_with_orphans_sum[i] += blocks_found_with_orphans[i];
+        }
     }
 
     std::cout.precision(4);
+/*    std::cout << "Orphan rate (%):";*/
+//for (int i = 0; i < miners.size(); i++) {
+        //double average_blocks_found = (double)blocks_found_sum[i]/n_runs;
+        //double average_blocks_found_with_orphans = (double)blocks_found_with_orphans_sum[i]/n_runs;
+        //double fraction = 1.0 - (double)average_blocks_found/(double)average_blocks_found_with_orphans;
+        //std::cout << " " << fraction*100;
+    //}
+    /*std::cout << "\n";*/
+
+
+
     std::cout << "Orphan rate: " << (fraction_orphan_sum*100.0)/n_runs << "%\n";
     std::cout << "Miner hashrate shares (%):";
     for (int i = 0; i < miners.size(); i++) {
         std::cout << " " << miners[i]->GetHashFraction()*100;
     }
     std::cout << "\n";
+
     std::cout << "Miner block shares (%):";
 
     for (int i = 0; i < miners.size(); i++) {

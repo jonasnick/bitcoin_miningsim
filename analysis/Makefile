@@ -15,3 +15,13 @@ shares_latency_realistic_small_miners.csv: shares_latency_realistic.sh
 
 shares_latency_all_small_miners_40.csv: shares_latency_all.sh
 	./shares_latency_all.sh shares_latency_all_small_miners_40.csv mining_40_dense_small_miners.cfg
+
+shares_latency_all_small_miners_40_selective.csv: shares_latency_all.sh
+	./shares_latency_all.sh shares_latency_all_small_miners_40_selective.csv mining_40_selective_small_miners.cfg
+	
+shares_latency_badly_connected_small_blocks.csv: shares_latency_badly_connected.sh
+	./shares_latency_badly_connected.sh shares_latency_badly_connected_small_blocks.csv mining_unif_bad_connection_small_blocks.cfg
+
+shares_latency_badly_connected_big_blocks.csv: shares_latency_badly_connected.sh
+	./shares_latency_badly_connected.sh shares_latency_badly_connected_big_blocks.csv mining_unif_bad_connection_big_blocks.cfg
+
