@@ -25,3 +25,11 @@ shares_latency_badly_connected_small_blocks.csv: shares_latency_badly_connected.
 shares_latency_badly_connected_big_blocks.csv: shares_latency_badly_connected.sh
 	./shares_latency_badly_connected.sh shares_latency_badly_connected_big_blocks.csv mining_unif_bad_connection_big_blocks.cfg
 
+shares_latency_sipa.csv: shares_latency_sipa.sh
+	./shares_latency_sipa.sh shares_latency_sipa.csv mining_sipa.cfg
+
+shares_latency_sipa_traitor.csv: shares_latency_sipa.sh
+	./shares_latency_sipa.sh shares_latency_sipa_traitor.csv mining_sipa_traitor.cfg
+
+
+
