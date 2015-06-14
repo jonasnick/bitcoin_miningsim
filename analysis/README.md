@@ -31,14 +31,16 @@ Small miners create small blocks
 
 Well vs. poorly connected miners
 ---
-**Poorly connected create big blocks**
+**Poorly connected create big blocks:**
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/poorly_connected_big_blocks.png)
-**Well connected create big blocks**
+
+**Well connected create big blocks:**
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/poorly_connected_small_blocks.png)
 
 Two Groups well connected internally but connected to each other with a single poor connection
 ---
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/sipa.png)
+
 **Miner 1 opens a new connection to the small group:**
 ![](https://raw.githubusercontent.com/jonasnick/bitcoin_miningsim/master/analysis/plots/sipa_traitor.png)
 
