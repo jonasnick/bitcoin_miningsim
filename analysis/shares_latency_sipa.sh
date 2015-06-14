@@ -5,10 +5,10 @@ echo "latency,nr,shares"> $1
 runs=100
 
 run () {
-    for i in {1..100}
+    for i in {1..1000}
     do
         nonce=$(($i + $3 * $runs))
-        result=$(../mining_simulator --blocks 86400 --config $2 --rng_seed $nonce --latency $3)
+        result=$(../mining_simulator --blocks 172800 --config $2 --rng_seed $nonce --latency $3)
         hashrate=$(echo "$result" | sed -n '4p')
         shares=$(echo "$result" | sed -n '5p')
         for i in {5..11}

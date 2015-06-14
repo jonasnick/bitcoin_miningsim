@@ -31,5 +31,5 @@ shares_latency_sipa.csv: shares_latency_sipa.sh
 shares_latency_sipa_traitor.csv: shares_latency_sipa.sh
 	./shares_latency_sipa.sh shares_latency_sipa_traitor.csv mining_sipa_traitor.cfg
 
-
-
+shares_latency_all_small_miners_40_sparse.csv: shares_latency_all.sh
+	./shares_latency_all.sh shares_latency_all_small_miners_40_sparse.csv mining_40_sparse_small_miners.cfg
