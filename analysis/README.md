@@ -1,11 +1,12 @@
-Can miners profit by creating bigger blocks?
+Can miners exploit a block size increase?
 ===
 
 Summary
 ---
 
-* TL;DR as long as there is no network partition, I didn't find a scenario where a miner can profit by creating bigger blocks 
-    * note that the model does not include fees
+* TL;DR As long as there is no network partition, I didn't find a scenario yet where a miner can profit by creating bigger blocks.
+    * Note that the model does not include fees.
+    * See also [Pieter Wuille's simulator](https://github.com/sipa/bitcoin-net-simul) which includes more parameters (such as fees).
 
 * Scenarios
     * big vs. small hashrate miners
